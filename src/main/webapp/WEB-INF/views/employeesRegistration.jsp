@@ -2,6 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -25,9 +26,9 @@
 </tr>
 <tr>
 <td>生年月日</td>
-<td><form:select path="bYear" itemValue="1" itemLabel="bYear" /></td>年
-<td><form:select path="bMonth" itemValue="2" itemLabel="bMonth" /></td>月
-<td><form:select path="bDay" itemValue="3" itemLabel="bDay" /></td>日
+<td><form:select path="bYear" items="${byear}" itemLabel="label" />年
+<form:select path="bMonth" items="${bmonth}" itemLabel="label" />月
+<form:select path="bDay" items="${bday}" itemLabel="label" />日</td>
 </tr>
 <tr>
 <td>郵便番号</td>
@@ -51,17 +52,21 @@
 </tr>
 <tr>
 <td>入社年月日</td>
-<td><form:input path="bYear" /></td>年
-<td><form:input path="bMonth" /></td>月
-<td><form:input path="bDay" /></td>日
+<td><form:select path="eYear" items="${eyear}" itemLabel="label" />年
+<form:select path="eMonth">
+<% for(int i = 0;i <= 12; i++) { %>
+<c:choose>
+<c:when	test="<%= i == 4 %>"><form:option value="4" selected="true" /></c:when>
+<c:otherwise><form:option value="<%=i %>" /></c:otherwise>
+</c:choose>
+<%} %>
+</form:select>月
+<form:select path="eDay" items="${eday}" itemLabel="label" />日</td>
 </tr>
 <tr>
 <td>部署</td>
 <td>
-<%-- <form:checkboxes path="post" itemLabel="passport" items="${post.passport}" />ITパスポート<br />
-<form:checkboxes path="post" itemLabel="kihon" items="${post.kihon}" />基本情報処理技術者<br />
-<form:checkboxes path="post" itemLabel="ouyou" items="${post.ouyou}" />応用情報処理技術者<br />
-<form:checkboxes path="post" itemLabel="other" items="${post.other}" />その他<br /> --%>
+<form:checkboxes path="post" items="${post}" />
 </td>
 </tr>
 <tr>

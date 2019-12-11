@@ -4,6 +4,13 @@ public class ListDataModel {
 
 	private String label;
 	private String data;
+
+	public ListDataModel(String label, String data) {
+		super();
+		this.label = label;
+		this.data = data;
+	}
+
 	public String getLabel() {
 		return label;
 	}
@@ -16,5 +23,4 @@ public class ListDataModel {
 	public void setData(String data) {
 		this.data = data;
 	}
-
 }
